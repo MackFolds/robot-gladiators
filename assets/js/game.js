@@ -91,10 +91,20 @@ var fight = function(enemyName) {
 };
 // function to start a new game
 var startGame = function() {
+
       // reset player stats
       playerHealth = 100;
       playerAttack = 10;
       playerMoney = 10;
+
+      if (playerHealth > 0 && i < enemyNames.length - 1) {
+        // ask if player wants to use the store before next round
+        var shopConfirm = window.confirm("The fight is over, visit the store before the next round?");
+        // if yes, take them to the store() function
+        if (shopConfirm) {
+          shop();
+      }
+    }
 
 for(var i = 0; i < enemyNames.length; i++) {
 
@@ -141,6 +151,11 @@ else {
 }
 }
 
-  // start the game when the page loads
-  startGame(); 
+var shop = function() {
+shopOptionPrompt = window.prompt(
+  "Would you like to REFILL your health, UPGRADE your attack, or LEAVE the store? Please enter one: 'REFILL', 'UPGRADE', or 'LEAVE' to make a choice."
+  );
+};
 
+  // start the game when the page loads
+  startGame();
